@@ -47,7 +47,7 @@ function App() {
 
   const filteredTodoList = useMemo(() => todoList.filter((todo: Todo) => {
     // console.log('Filtering...')
-    return todo.task.toLowerCase().includes(term.toLocaleLowerCase())
+    return todo.task.toLowerCase().includes(term.toLowerCase())
   }), [term, todoList])
 
   return (
