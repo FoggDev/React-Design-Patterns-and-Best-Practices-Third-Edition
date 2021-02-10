@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-const Controlled = () => {
+const Uncontrolled = () => {
   const [values, setValues] = useState<any>({ firstName: '', lastName: '' })
 
   const handleChange = (e: any) => {
@@ -23,13 +23,11 @@ const Controlled = () => {
       <input
         type="text"
         name="firstName"
-        value={values.firstName}
         onChange={handleChange}
       />
       <input
         type="text"
         name="lastName"
-        value={values.lastName}
         onChange={handleChange}
       />
       <button>Submit</button>
@@ -37,4 +35,4 @@ const Controlled = () => {
   )
 }
 
-export default Controlled
+export default Uncontrolled
