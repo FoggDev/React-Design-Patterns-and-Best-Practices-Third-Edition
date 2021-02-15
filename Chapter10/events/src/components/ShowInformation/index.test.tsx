@@ -21,7 +21,7 @@ describe('Show Information Component', () => {
   })
 
   it('should show the personal information when user clicks on the button', () => {
-    const button = wrapper.container.querySelector('.showButton')
+    const button = wrapper.container.querySelector('button')
 
     fireEvent.click(button)
 

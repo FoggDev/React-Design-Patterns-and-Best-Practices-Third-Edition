@@ -53,9 +53,7 @@ const ShowInformation: FC = () => {
       </p>
 
       <p>
-        <button className="showButton" onClick={handleShowInformation}>
-          Show Information
-        </button>
+        <button onClick={handleShowInformation}>Show Information</button>
       </p>
     </div>
   )
