@@ -12,6 +12,7 @@ type Props = {
 const Pokemon: FC<Props> = ({ pokemonName }) => {
   const { data, error } = useSWR(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`)
 
+  // Do you remember the error we set on the fetcher?
   if (error || data.error) {
     return <div />
   }

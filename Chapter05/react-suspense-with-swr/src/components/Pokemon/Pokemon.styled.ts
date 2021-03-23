@@ -1,14 +1,15 @@
 import styled from 'styled-components'
 
+// Type colors
 const type: any = {
   bug: '#2ADAB1',
   dark: '#636363',
   dragon: '#E9B057',
   electric: '#ffeb5b',
   fairy: '#ffdbdb',
-  flying: '#E8DCB3',
   fighting: '#90a4b5',
   fire: '#F7786B',
+  flying: '#E8DCB3',
   ghost: '#755097',
   grass: '#2ADAB1',
   ground: '#dbd3a2',
@@ -18,7 +19,7 @@ const type: any = {
   psychic: '#705548',
   rock: '#b7b7b7',
   steel: '#999',
-  water: '#58ABF6',
+  water: '#58ABF6'
 }
 
 export const StyledPokedex = styled.div`
