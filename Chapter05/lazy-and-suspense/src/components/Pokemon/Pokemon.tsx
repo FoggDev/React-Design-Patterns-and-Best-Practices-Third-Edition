@@ -10,7 +10,7 @@ type Props = {
 }
 
 const Pokemon: FC<Props> = ({ pokemonName }) => {
-  const { data, isValidating, error } = useSWR(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`)
+  const { data, error } = useSWR(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`)
 
   if (error || data.error) {
     return <div />

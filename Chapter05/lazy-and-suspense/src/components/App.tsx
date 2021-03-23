@@ -1,28 +1,12 @@
 // Dependencies
 import { SWRConfig } from 'swr'
-import styled from 'styled-components'
 
 // Components
 import PokeContainer from './Pokemon/PokeContainer'
+import fetcher from './Pokemon/fetcher'
 
 // Styles
-import { StyledPokedex } from './Pokemon/Pokemon.styled'
-
-const StyledTitle = styled.h1`
-  text-align: center;
-`
-
-const fetcher = (url: string) => {
-  return fetch(url).then((response) => {
-    if (response.ok) {
-      return response.json()
-    }
-
-    return {
-      error: true
-    }
-  })
-}
+import { StyledPokedex, StyledTitle } from './Pokemon/Pokemon.styled'
 
 const App = () => {
   return (

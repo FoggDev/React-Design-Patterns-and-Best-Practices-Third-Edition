@@ -96,3 +96,17 @@ export const StyledHeader = styled.div`
     margin-top: 5px;
   }
 `
+
+export const StyledTitle = styled.h1`
+  text-align: center;
+`
+
+export const StyledGrid = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  flex-flow: row wrap;
+  div {
+    margin-right: 5px;
+    margin-bottom: 5px;
+  }
+`
