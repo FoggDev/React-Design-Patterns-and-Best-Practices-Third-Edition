@@ -17,7 +17,7 @@ export default {
   Query: {
     getUsers: (
       _: any,
-      _args: any,
+      args: any,
       { models }: { models: IModels }
     ): IUser[] => models.User.findAll(),
     getUserData: async (

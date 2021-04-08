@@ -1,7 +1,7 @@
 // Dependencies
 import { encrypt } from '@contentpi/lib'
 
-// Interface
+// Interfaces
 import { IUser, IDataTypes } from '../types'
 
 export default (sequelize: any, DataTypes: IDataTypes): IUser => {

@@ -1,41 +1,20 @@
 // Dependencies
-import jwt from 'jsonwebtoken'
 import { AuthenticationError } from 'apollo-server'
 
 // Utils
-import { encrypt, setBase64, isPasswordMatch } from '@contentpi/utils'
+import { encrypt, isPasswordMatch } from '@contentpi/lib'
 
 // Interface
 import { IUser, IModels, IAuthPayload } from '../types'
 
-// Configuration
-import { $security } from '../../config'
-
-export const createToken = async (user: IUser): Promise<string[]> => {
-  const { id, username, password, email, privilege, active } = user
-  const token = setBase64(`${encrypt($security.secretKey)}${password}`)
-  const userData = {
-    id,
-    username,
-    email,
-    privilege,
-    active,
-    token
-  }
-
-  const createTk = jwt.sign(
-    { data: setBase64(userData) },
-    $security.secretKey,
-    { expiresIn: $security.expiresIn }
-  )
-
-  return Promise.all([createTk])
-}
+// JWT
+import { createToken } from './jwt'
 
 export const getUserBy = async (
   where: any,
   models: IModels
 ): Promise<IUser> => {
+  // We find a user by a WHERE condition
   const user = await models.User.findOne({
     where,
     raw: true
@@ -49,25 +28,34 @@ export const doLogin = async (
   password: string,
   models: IModels
 ): Promise<IAuthPayload> => {
+  // Finding a user by email
   const user = await getUserBy({ email }, models)
 
+  // If the user does not exists we return Invalid Login
   if (!user) {
     throw new AuthenticationError('Invalid Login')
   }
 
+  // We verify that our encrypted password is the same as the user.password value
   const passwordMatch = isPasswordMatch(encrypt(password), user.password)
+
+  // We validate that the user is active
   const isActive = user.active
 
+  // If the password does not match we return invalid login
   if (!passwordMatch) {
     throw new AuthenticationError('Invalid Login')
   }
 
+  // If the account is not active we return an error
   if (!isActive) {
     throw new AuthenticationError('Your account is not activated yet')
   }
 
+  // If the user exists, the password is correct and the accoutn is active, we create the JWT token
   const [token] = await createToken(user)
 
+  // Finally we return the token to Graphql
   return {
     token
   }
