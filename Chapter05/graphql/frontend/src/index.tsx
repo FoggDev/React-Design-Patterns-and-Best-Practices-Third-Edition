@@ -12,7 +12,7 @@ import config from './config'
 
 // Apollo Client configuration
 const client = new ApolloClient({
-  uri: config.api,
+  uri: config.apiUrl,
   cache: new InMemoryCache()
 });
 

@@ -1,5 +1,5 @@
 // Dependencies
-import React, { FC, ReactElement } from 'react'
+import { FC, ReactElement } from 'react'
 import { isBrowser } from '@contentpi/lib'
 
 // Contexts

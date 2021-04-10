@@ -6,7 +6,7 @@ import production from './production.json'
 // Interface
 interface IConfig {
   baseUrl: string
-  api: string
+  apiUrl: string
   server: {
     port: number
   }
@@ -16,7 +16,6 @@ interface IConfig {
   }
 }
 
-// Extracting data from .env file
 const { NODE_ENV = 'development' } = process.env
 
 // development => local

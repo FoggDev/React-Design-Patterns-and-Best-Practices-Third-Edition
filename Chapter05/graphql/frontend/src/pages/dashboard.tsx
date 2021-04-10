@@ -4,10 +4,10 @@ import DashboardLayout from '../components/dashboard/DashboardLayout'
 // Contexts
 import UserProvider from '../contexts/user'
 
-const Dashboard = () => (
+const Page = () => (
   <UserProvider>
     <DashboardLayout />
   </UserProvider>
 )
 
-export default Dashboard
+export default Page

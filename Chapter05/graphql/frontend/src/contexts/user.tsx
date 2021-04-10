@@ -1,5 +1,5 @@
 // Dependencies
-import React, { FC, createContext, ReactElement, useState, useEffect } from 'react'
+import { FC, createContext, ReactElement, useState, useEffect } from 'react'
 import { useCookies } from 'react-cookie'
 import { getGraphQlError, redirectTo, getDebug } from '@contentpi/lib'
 import { useQuery, useMutation } from '@apollo/client'
@@ -16,7 +16,7 @@ interface IUserContext {
   connectedUser: any
 }
 
-interface iProps {
+interface IProps {
   page?: string
   children: ReactElement
 }
@@ -27,7 +27,7 @@ export const UserContext = createContext<IUserContext>({
   connectedUser: null
 })
 
-const UserProvider: FC<iProps> = ({ page = '', children }): ReactElement => {
+const UserProvider: FC<IProps> = ({ page = '', children }): ReactElement => {
   const [cookies, setCookie] = useCookies()
   const [connectedUser, setConnectedUser] = useState(null)
 
@@ -45,8 +45,10 @@ const UserProvider: FC<iProps> = ({ page = '', children }): ReactElement => {
   useEffect(() => {
     if (dataUser) {
       if (!dataUser.getUserData.id && page !== 'login') {
+        // If the user session is invalid and is on a different page than login we redirect them to login
         redirectTo('/login?redirectTo=/dashboard', false)
       } else {
+        // If we have the user data available we save it in our connectedUser state
         setConnectedUser(dataUser.getUserData)
       }
     }
@@ -54,6 +56,7 @@ const UserProvider: FC<iProps> = ({ page = '', children }): ReactElement => {
 
   async function login(input: { email: string; password: string }): Promise<any> {
     try {
+      // Executing our loginMutation passing the email and password
       const { data: dataLogin } = await loginMutation({
         variables: {
           email: input.email,
@@ -62,15 +65,18 @@ const UserProvider: FC<iProps> = ({ page = '', children }): ReactElement => {
       })
 
       if (dataLogin) {
+        // If the login was success, we save the token in our "at" cookie
         setCookie('at', dataLogin.login.token, { path: '/' })
 
         return dataLogin.login.token
       }
     } catch (err) {
+      // If there is an error we return it
       return getGraphQlError(err)
     }
   }
 
+  // Exporting our context
   const context = {
     login,
     connectedUser

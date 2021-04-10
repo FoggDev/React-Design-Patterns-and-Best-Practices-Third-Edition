@@ -1,7 +1,7 @@
-const Error404 = () => (
+const Page = () => (
   <div className="error404">
     <h1>Error404</h1>
   </div>
 )
 
-export default Error404
+export default Page
