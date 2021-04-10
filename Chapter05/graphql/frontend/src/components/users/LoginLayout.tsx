@@ -1,0 +1,28 @@
+// Dependencies
+import { redirectTo } from '@contentpi/lib'
+import { FC, ReactElement, useContext, useEffect } from 'react'
+
+// Contexts
+import { UserContext } from '../../contexts/user'
+
+// Components
+import Login from './Login'
+
+// Interfaces
+interface IProps {
+  currentUrl: string
+}
+
+const Layout: FC<IProps> = ({ currentUrl }): ReactElement => {
+  const { login, connectedUser } = useContext(UserContext)
+
+  if (connectedUser) {
+    redirectTo('/dashboard')
+  }
+
+  return (
+    <Login login={login} currentUrl={currentUrl} />
+  )
+}
+
+export default Layout

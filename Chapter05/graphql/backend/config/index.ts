@@ -34,7 +34,6 @@ const {
   DB_DATABASE = '',
   DB_USERNAME = '',
   DB_PASSWORD = '',
-  SECURITY_SECRET_KEY = ''
 } = process.env
 
 const db: Db = {
@@ -48,9 +47,6 @@ const db: Db = {
 
 // Configuration
 const { security, server } = config
-
-// Getting Secret Key from .env file
-security.secretKey = SECURITY_SECRET_KEY
 
 export const $db: Db = db
 export const $security: Security = security
