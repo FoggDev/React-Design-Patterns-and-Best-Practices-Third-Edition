@@ -14,7 +14,7 @@ interface IProps {
 }
 
 const Layout: FC<IProps> = ({ currentUrl }): ReactElement => {
-  const { login, connectedUser } = useContext(UserContext)
+  const { login } = useContext(UserContext)
 
   return (
     <Login login={login} currentUrl={currentUrl} />

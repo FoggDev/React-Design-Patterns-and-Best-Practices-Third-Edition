@@ -37,12 +37,15 @@ const Login: FC<IProps> = ({ login, currentUrl }): ReactElement => {
   }
 
   const handleSubmit = async (user: IUser): Promise<void> => {
+    // Here we execute the login mutation
     const response = await login(user)
 
     if (response.error) {
+      // If the login is invalid...
       setInvalidLogin(true)
       setErrorMessage(response.message)
     } else {
+      // If the login is correct...
       redirectTo(currentUrl || '/')
     }
   }
