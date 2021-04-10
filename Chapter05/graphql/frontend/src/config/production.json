@@ -1,14 +1,4 @@
 {
   "baseUrl": "http://www.js.education",
-  "api": {
-    "uri": "http://www.js.education/graphql",
-    "credentials": "same-origin"
-  },
-  "session": {
-    "cookieDomain": "www.js.education",
-    "maxAge": 604800,
-    "cookiePrefix": "",
-    "path": "/",
-    "httpOnly": true
-  }
+  "api": "http://www.js.education/graphql"
 }

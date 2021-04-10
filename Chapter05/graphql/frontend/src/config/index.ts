@@ -6,17 +6,7 @@ import production from './production.json'
 // Interface
 interface IConfig {
   baseUrl: string
-  api: {
-    uri: string
-    credentials: string
-  }
-  session: {
-    cookieDomain: string
-    maxAge: number
-    cookiePrefix: string
-    path: string
-    httpOnly: boolean
-  }
+  api: string
   server: {
     port: number
   }

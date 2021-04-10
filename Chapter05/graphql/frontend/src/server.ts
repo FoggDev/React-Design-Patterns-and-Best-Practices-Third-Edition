@@ -33,24 +33,32 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser(config.security.secretKey))
 app.use(cors({ credentials: true, origin: true }))
 
+// Routes
 app.get('/dashboard',
   isConnected(
     true,
-    ['god', 'admin', 'editor'],
+    ['god', 'admin'], // Those are the allowed permissions
     `/login?redirectTo=/dashboard`
   ),
   (req: Request, res: Response, next: NextFunction) => {
+    // If the user isConnected then we allow the access to the dashboard page, otherwise will be redirect to /login
     next()
   }
 )
 
+// Forcing only No connected users to access to /login, if a connected user try to access will be redirect to the homepage
+app.get('/login', isConnected(false), (req: Request, res: Response, next: NextFunction) => {
+  next()
+})
+
 app.get(`/logout`, (req: Request, res: Response) => {
+  // This will cler our "at" cookie and redirect to home
   res.clearCookie('at')
   res.redirect('/')
 })
 
-// Routes
 app.get('*', (req: Request, res: Response) => {
+  // We render our React application
   res.sendFile(HTML_FILE)
 })
 

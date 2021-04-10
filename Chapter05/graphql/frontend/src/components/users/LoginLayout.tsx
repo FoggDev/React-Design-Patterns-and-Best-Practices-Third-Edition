@@ -16,10 +16,6 @@ interface IProps {
 const Layout: FC<IProps> = ({ currentUrl }): ReactElement => {
   const { login, connectedUser } = useContext(UserContext)
 
-  if (connectedUser) {
-    redirectTo('/dashboard')
-  }
-
   return (
     <Login login={login} currentUrl={currentUrl} />
   )

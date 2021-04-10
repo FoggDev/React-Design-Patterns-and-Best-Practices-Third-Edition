@@ -3,6 +3,7 @@ import path from 'path'
 import webpack, { Configuration } from 'webpack'
 import HtmlWebPackPlugin from 'html-webpack-plugin'
 
+// Environment
 const isProduction = process.env.NODE_ENV === 'production'
 
 const webpackConfig: Configuration = {
@@ -54,7 +55,7 @@ const webpackConfig: Configuration = {
     new HtmlWebPackPlugin({
       template: './src/index.html',
       filename: './index.html',
-      publicPath: !isProduction ? 'http://localhost:8080/' : ''
+      publicPath: !isProduction ? 'http://localhost:8080/' : '' // For dev we will read the bundle from localhost:8080 (webpack-dev-server)
     })
   ]
 }
